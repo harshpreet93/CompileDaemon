@@ -377,6 +377,8 @@ func main() {
 
 	defer watcher.Close()
 
+	log.Println("flag_recursive: ", *flag_recursive)
+
 	if *flag_recursive == true {
 		err = filepath.Walk(*flag_directory, func(path string, info os.FileInfo, err error) error {
 			if err == nil && info.IsDir() {
