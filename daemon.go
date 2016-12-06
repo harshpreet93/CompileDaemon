@@ -422,6 +422,8 @@ func main() {
 			if ev.Op&fsnotify.Remove == fsnotify.Remove || ev.Op&fsnotify.Write == fsnotify.Write || ev.Op&fsnotify.Create == fsnotify.Create {
 				base := filepath.Base(ev.Name)
 
+				log.Println("detected change in: ", ev.Name)
+
 				// Assume it is a directory and track it.
 				if *flag_recursive == true && !flag_excludedDirs.Matches(ev.Name) {
 					watcher.Add(ev.Name)
