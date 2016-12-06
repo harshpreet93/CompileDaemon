@@ -381,8 +381,10 @@ func main() {
 		err = filepath.Walk(*flag_directory, func(path string, info os.FileInfo, err error) error {
 			if err == nil && info.IsDir() {
 				if flag_excludedDirs.Matches(info.Name()) {
+					log.Println("matches excluded dirs: ", info.Name())
 					return filepath.SkipDir
 				} else {
+					log.Println("will be watching dirs: ", path)
 					return watcher.Add(path)
 				}
 			}
